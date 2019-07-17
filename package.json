@@ -18,7 +18,6 @@
     "build:prod": "yarn lint && cross-env NODE_ENV=production rollup -c",
     "build:dev": "yarn lint && cross-env NODE_ENV=development rollup -c",
     "commit": "git-cz",
-    "test": "yarn lint && cross-env NODE_ENV=test jest --verbose",
     "lint": "tslint --project tsconfig.json --fix",
     "changelog": "conventional-changelog -i CHANGELOG.md -s",
     "prepublishOnly": "yarn build"
