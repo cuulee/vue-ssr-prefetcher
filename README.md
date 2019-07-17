@@ -75,7 +75,7 @@ function routerReady (router) {
 
 `serverPlugin` will inject the `app.$$selfStore` property on the root component instance and store the component-level data. You just need to add it to `context.state`. In addition, you also need to set `context.rendered` to `serverPlugin.done`.
 
-### 在 `client entry` 中：
+### In `client entry`：
 
 ```js
 import Vue from 'vue'
