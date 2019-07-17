@@ -42,25 +42,28 @@ export const serverPlugin = (Vue: VueConstructor) => {
 // reset
 serverPlugin.done = () => (uid = 0)
 
-export const clientPlugin = (Vue: VueConstructor) => {
+export const clientPlugin = (Vue: VueConstructor, options = { stop: true }) => {
   Vue.prototype.$createFetcher = function(fetcher: Fetcher) {
-    const vm = this
-    console.log('this.$root.$$resolved: ', this.$root.$$resolved)
     return function(params: any) {
-      if (!vm.$root.$$resolved) return vm.$root.$$selfStore[vm._uid]
+      if (!clientPlugin.$$resolved) {
+        throw new Error('vue-ssr-prefetcher: custom error')
+      }
 
       return fetcher(params)
     }
   }
 
   Vue.mixin({
-    data() {
+    created() {
       const $$selfStore = this.$root.$$selfStore
+      if (clientPlugin.$$resolved || !$$selfStore) return
 
-      if (!$$selfStore) return {}
-
-      console.log('Prefetch Data: ', $$selfStore[this._uid])
-      return { ...($$selfStore[this._uid] || {}) }
+      Object.assign(this, $$selfStore[this._uid] || {})
+    },
+    errorCaptured() {
+      return !options.stop
     }
   })
 }
+
+clientPlugin.$$resolved = false

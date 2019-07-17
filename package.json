@@ -1,5 +1,5 @@
 {
-  "name": "vue-ssr-perfetcher",
+  "name": "vue-ssr-prefetcher",
   "version": "0.1.0",
   "description": "Making Vue SSR's data prefetching more intuitive",
   "keywords": [
@@ -9,7 +9,7 @@
   ],
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
-  "repository": "https://github.com/shuidi-fed/vue-ssr-perfetcher.git",
+  "repository": "https://github.com/shuidi-fed/vue-ssr-prefetcher.git",
   "author": "HcySunYang <HcySunYang@outlook.com>",
   "license": "MIT",
   "scripts": {
