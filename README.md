@@ -154,3 +154,16 @@ Of course, `vue-ssr-prefetcher` is also done for you:
 - Should be able to send requests normally when the route jumps
 
 **And you don't need to do anything. The only thing you need to do is create a `fetcher` using `this.$createFetcher` function, but this is really straightforward, no black technology.**
+
+In order to work with vuex, you only need to:
+
+```js
+export default {
+  name: 'Example',
+  async created() {
+    const fetcher = this.$createFetcher(() => this.$store.dispatch('someAction'))
+
+    fetcher()
+  }
+}
+```

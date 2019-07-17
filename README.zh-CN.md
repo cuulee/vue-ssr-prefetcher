@@ -152,3 +152,16 @@ Vue.prototype.$createFetcher = function(fetcher) {
 - 当路由跳转时应该能够正常发送请求
 
 而你几乎什么都不需要做，**唯一需要做的就是使用 `this.$createFetcher` 函数创建 `fetcher`**，但这真的很直率，没有黑科技。
+
+为了配合 `vuex` 一块使用，你只需要：
+
+```js
+export default {
+  name: 'Example',
+  async created() {
+    const fetcher = this.$createFetcher(() => this.$store.dispatch('someAction'))
+
+    fetcher()
+  }
+}
+```
